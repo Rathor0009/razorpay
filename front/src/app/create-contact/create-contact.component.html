@@ -1,0 +1,61 @@
+<p>create-contact works!</p>
+
+<!-- <form class="container" action="">
+    <label for="name">name</label>
+    <input type="text">
+    <label for="email">email</label>
+    <input type="text">
+    <label for="contact">contact</label>
+    <input type="text">
+    <label for="type">type</label>
+    <input type="text">
+    <br>
+    <button (click)="send()">next to send fund to </button>
+</form> -->
+
+
+<div class="container">
+    <legend>Contact Details</legend>
+    <div class="row">
+        <div class="col col-md-8">
+            <form [formGroup]="contactForm" (ngSubmit)="send()">
+                <div class="mb-3">
+                    <label for="name" class="form-label">name</label>
+                    <input type="text" class="form-control" id="name" formControlName="name"
+                        [ngClass]="{ 'is-invalid': submitted && contactForm.controls['name'].errors }" />
+                    <div *ngIf="submitted && contactForm.controls['name'].errors" class="alert alert-danger">
+                        <div *ngIf="contactForm.controls['name'].errors['required']"> Name is required</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">email</label>
+                    <input type="text" class="form-control" id="email" formControlName="email"
+                        [ngClass]="{ 'is-invalid': submitted && contactForm.controls['email'].errors }" />
+                    <div *ngIf="submitted && contactForm.controls['email'].errors" class="alert alert-danger">
+                        <div *ngIf="contactForm.controls['email'].errors['required']"> email is required</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="contact" class="form-label">contact</label>
+                    <input type="text" class="form-control" id="contact" formControlName="contact"
+                        [ngClass]="{ 'is-invalid': submitted && contactForm.controls['contact'].errors }" />
+                    <div *ngIf="submitted && contactForm.controls['contact'].errors" class="alert alert-danger">
+                        <div *ngIf="contactForm.controls['contact'].errors['required']"> contact is required</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="type" class="form-label">type</label>
+                    <input type="text" class="form-control" id="type" formControlName="type"
+                        [ngClass]="{ 'is-invalid': submitted && contactForm.controls['type'].errors }" />
+                    <div *ngIf="submitted && contactForm.controls['type'].errors" class="alert alert-danger">
+                        <div *ngIf="contactForm.controls['type'].errors['required']"> type is required</div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+    </div>
+</div>
