@@ -30,7 +30,7 @@ export class CreateContactComponent implements OnInit {
     this.submitted = true;
     if(this.contactForm.valid){
       this.razorPayservice.contactdetails(this.contactForm.value)
-    this.router.navigate(['add-fund'])
+    this.router.navigate(['add-fund']);
     }
   }
 

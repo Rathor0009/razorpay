@@ -16,7 +16,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 const { Contact } = require("razorpayx-nodejs-sdk")("rzp_test_hYOABKStQQJGFI", "GAf2uBKYHqxCtYwPL8BdnJ2h");
+
 const { FundAccount } = require("razorpayx-nodejs-sdk")("rzp_test_hYOABKStQQJGFI", "GAf2uBKYHqxCtYwPL8BdnJ2h");
+
+const { Payout } = require("razorpayx-nodejs-sdk")("rzp_test_hYOABKStQQJGFI", "GAf2uBKYHqxCtYwPL8BdnJ2h");
+
 
 
 let razorPayInstance = new Razorpay({
@@ -223,40 +227,85 @@ app.post('/contacts', async (req, res) => {
     }
 })
 
-
+// create fund account by bank transfer
 app.post('/FundAccount', async (req, res) => {
     try {
-        let name = req.body.name;
-        let email = req.body.email;
-        let contact = req.body.contact;
-        let type = req.body.type;
-
-        let contacts = await FundAccount.create({
-            name: name,
-            email: email,
-            contact: contact,
-            type: type
-        })
-        const contactdetail = new contactdetails({
-            contactId: contacts.id,
-            name: contacts.name,
-            contact: contacts.contact,
-            type: contacts.type,
-        })
-        contactdetail.save(function (err, doc) {
-            if (err) {
-                return console.error(err);
+        let contact_id = req.body.contact_id;
+        let account_type = req.body.account_type;
+        let bank_account = req.body.bank_account;
+        let FundAccounts = await FundAccount.create({
+            contact_id: contact_id,
+            account_type: account_type,
+            bank_account: {
+                name: bank_account.name,
+                ifsc: bank_account.ifsc,
+                account_number: bank_account.account_number
             }
-            console.log("contact created succussfully!", contactdetail);
-        });
+        })
+        console.log("fund acc created succussfully!", FundAccounts);
         return res.status(201).json({
             success: true,
-            contacts
+            FundAccounts
         })
     } catch (err) {
         console.log(err)
     }
 })
+
+// create fund account by upi transfer
+app.post('/FundAccountupi', async (req, res) => {
+    try {
+        let contact_id = req.body.contact_id;
+        let account_type = req.body.account_type;
+        let vpa = req.body.vpa;
+        let FundAccounts = await FundAccount.create({
+            contact_id: contact_id,
+            account_type: account_type,
+            vpa: {
+                address: vpa.address,
+            }
+        })
+        console.log("fund acc by upi created succussfully!", FundAccounts);
+        return res.status(201).json({
+            success: true,
+            FundAccounts
+        })
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+
+//create payout for fund account
+app.post('/payout', async (req, res) => {
+    try {
+        // let account_number = req.body.account_number;
+        let fund_account_id = req.body.fund_account_id;
+        let amount = req.body.amount;
+        let mode = req.body.mode;
+        let purpose = req.body.purpose
+
+        let payouts = await Payout.create({
+            account_number: "2323230071661424",
+            fund_account_id: fund_account_id,
+            amount: amount,
+            currency: "INR",
+            mode: mode,
+            purpose: purpose,
+        })
+        console.log(payouts);
+        console.log("payouts succussfully!", payouts);
+
+        return res.status(201).json({
+            success: true,
+            payouts
+        })
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+
 
 
 app.get('/getContacts', async (req, res) => {

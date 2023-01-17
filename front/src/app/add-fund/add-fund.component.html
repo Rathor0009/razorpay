@@ -1,5 +1,65 @@
-<p>add-fund works!</p>
-<input type="text"  >
-<input type="text">
-<input type="text">
-<input type="text">
+<div class="container">
+    <legend>Add fund </legend>
+    <div class="row">
+        <div class="col col-md-8">
+            <form [formGroup]="addfundForm" (ngSubmit)="addfund()">
+                <!-- <div class="mb-3">
+                    <label for="contact_id" class="form-label">contact_id</label>
+                    <input type="text" class="form-control" id="contact_id" formControlName="contact_id"
+                        [ngClass]="{ 'is-invalid': submitted && addfundForm.controls['contact_id'].errors }" />
+                    <div *ngIf="submitted && addfundForm.controls['contact_id'].errors" class="alert alert-danger">
+                        <div *ngIf="addfundForm.controls['contact_id'].errors['required']"> Name is required</div>
+                    </div>
+                </div> -->
+
+
+                <div class="mb-3">
+                    <label for="account_type" class="form-label">account_type</label>
+                    <select id="account_type" name="account_type" formControlName="account_type" class="form-control"
+                        (change)='onOptionsSelected($event)'>
+                        <option value="bank_account">bank_account</option>
+                        <option value="vpa">vpa</option>
+                    </select>
+                </div>
+
+                <!-- <div class="mb-3">
+                   
+                    <input type="text" class="form-control" id="account_type" formControlName="account_type"
+                        [ngClass]="{ 'is-invalid': submitted && addfundForm.controls['account_type'].errors }" />
+                    <div *ngIf="submitted && addfundForm.controls['account_type'].errors" class="alert alert-danger">
+                        <div *ngIf="addfundForm.controls['account_type'].errors['required']"> email is required</div>
+                    </div>
+                </div> -->
+                <div class="mb-3" *ngIf="addfundForm.get('account_type')?.value == 'bank_account'" formGroupName="bank_account">
+                    <div>
+                        <label for="name" class="form-label">name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" />
+                        <label for="ifsc" class="form-label">ifsc</label>
+                        <input type="text" class="form-control" id="ifsc" formControlName="ifsc" />
+                        <label for="account_number" class="form-label">account_number</label>
+                        <input type="text" class="form-control" id="account_number" formControlName="account_number" />
+                    </div>
+                </div>
+
+
+                <div class="mb-3" *ngIf="addfundForm.get('account_type')?.value == 'vpa'" formGroupName="vpa">
+                    <div>
+                        <label for="address" class="form-label">address</label>
+                        <input type="text" class="form-control" id="address" formControlName="address" />
+                    </div>
+                </div>
+                <!-- 
+                <div class="mb-3">
+                    <label for="type" class="form-label">type</label>
+                    <input type="text" class="form-control" id="type" formControlName="type"
+                        [ngClass]="{ 'is-invalid': submitted && addfundForm.controls['type'].errors }" />
+                    <div *ngIf="submitted && addfundForm.controls['type'].errors" class="alert alert-danger">
+                        <div *ngIf="addfundForm.controls['type'].errors['required']"> type is required</div>
+                    </div>
+                </div> -->
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+    </div>
+</div>

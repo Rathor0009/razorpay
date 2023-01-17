@@ -1,1 +1,61 @@
 <p>payout works!</p>
+
+<div class="container">
+    <legend>payout Details</legend>
+    <div class="row">
+        <div class="col col-md-8">
+            <form [formGroup]="payoutForm" (ngSubmit)="payout()">
+                <!-- <div class="mb-3">
+                    <label for="fund_account_id" class="form-label">fund_account_id</label>
+                    <input type="text" class="form-control" id="fund_account_id" formControlName="fund_account_id"
+                        [ngClass]="{ 'is-invalid': submitted && payoutForm.controls['fund_account_id'].errors }" />
+                    <div *ngIf="submitted && payoutForm.controls['fund_account_id'].errors" class="alert alert-danger">
+                        <div *ngIf="payoutForm.controls['fund_account_id'].errors['required']"> Name is required</div>
+                    </div>
+                </div> -->
+                <div class="mb-3">
+                    <label for="amount" class="form-label">amount</label>
+                    <input type="text" class="form-control" id="amount" formControlName="amount"
+                        [ngClass]="{ 'is-invalid': submitted && payoutForm.controls['amount'].errors }" />
+                    <div *ngIf="submitted && payoutForm.controls['amount'].errors" class="alert alert-danger">
+                        <div *ngIf="payoutForm.controls['amount'].errors['required']"> amount is required</div>
+                    </div>
+                </div>
+
+                <!-- <div class="mb-3">
+                    <label for="mode" class="form-label">mode</label>
+                    <input type="text" class="form-control" id="mode" formControlName="mode"
+                        [ngClass]="{ 'is-invalid': submitted && payoutForm.controls['mode'].errors }" />
+                    <div *ngIf="submitted && payoutForm.controls['mode'].errors" class="alert alert-danger">
+                        <div *ngIf="payoutForm.controls['mode'].errors['required']"> amount is required</div>
+                    </div>
+                </div> -->
+
+                <div class="mb-3">
+                    <label for="mode" class="form-label">mode</label>
+                    <select id="mode" name="mode" formControlName="mode" class="form-control">
+                        <option value="IMPS">IMPS</option>
+                        <option value="UPI">UPI</option>
+                    </select>
+                </div>
+
+              
+                <div class="mb-3">
+                    <label for="purpose" class="form-label">purpose</label>
+                    <input type="text" class="form-control" id="purpose" formControlName="purpose"
+                        [ngClass]="{ 'is-invalid': submitted && payoutForm.controls['purpose'].errors }" />
+                    <div *ngIf="submitted && payoutForm.controls['purpose'].errors" class="alert alert-danger">
+                        <div *ngIf="payoutForm.controls['purpose'].errors['required']"> purpose is required</div>
+                    </div>
+                </div>
+
+              
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+
+            <!-- {{payoutForm | json}} -->
+        </div>
+
+    </div>
+</div>
