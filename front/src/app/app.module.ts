@@ -11,6 +11,7 @@ import { TransferComponent } from './transfer/transfer.component';
 import { CreateContactComponent } from './create-contact/create-contact.component';
 import { AddFundComponent } from './add-fund/add-fund.component';
 import { PayoutComponent } from './payout/payout.component';
+import { Payout1Component } from './payout1/payout1.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { PayoutComponent } from './payout/payout.component';
     TransferComponent,
     CreateContactComponent,
     AddFundComponent,
-    PayoutComponent
+    PayoutComponent,
+    Payout1Component
   ],
   imports: [
     BrowserModule,

@@ -17,4 +17,9 @@ export class TransferComponent implements OnInit {
     this.router.navigate(['createcontact'])
   }
 
+  transferto1(){
+    this.router.navigate(['payout1'])
+
+  }
+
 }

@@ -20,7 +20,6 @@ export class PayoutComponent implements OnInit {
       amount: ['',[Validators.required]],
       mode :['',[Validators.required]],
       purpose:['',[Validators.required]],
-      
     })
   }
 

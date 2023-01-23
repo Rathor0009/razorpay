@@ -15,11 +15,11 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
-const { Contact } = require("razorpayx-nodejs-sdk")("rzp_test_hYOABKStQQJGFI", "GAf2uBKYHqxCtYwPL8BdnJ2h");
+const { Contact, FundAccount, Payout } = require("razorpayx-nodejs-sdk")("rzp_test_hYOABKStQQJGFI", "GAf2uBKYHqxCtYwPL8BdnJ2h");
 
-const { FundAccount } = require("razorpayx-nodejs-sdk")("rzp_test_hYOABKStQQJGFI", "GAf2uBKYHqxCtYwPL8BdnJ2h");
+// const { FundAccount } = require("razorpayx-nodejs-sdk")("rzp_test_hYOABKStQQJGFI", "GAf2uBKYHqxCtYwPL8BdnJ2h");
 
-const { Payout } = require("razorpayx-nodejs-sdk")("rzp_test_hYOABKStQQJGFI", "GAf2uBKYHqxCtYwPL8BdnJ2h");
+// const { Payout } = require("razorpayx-nodejs-sdk")("rzp_test_hYOABKStQQJGFI", "GAf2uBKYHqxCtYwPL8BdnJ2h");
 
 
 
